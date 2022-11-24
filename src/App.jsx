@@ -3,6 +3,7 @@ import style from './App.module.css'
 import { useState } from 'react'
 import { Sidebar } from './components/Sidebar/Sidebar'
 import { Post } from './components/Post/Post'
+import { CommentForm } from './components/CommentForm/CommentForm'
 
 function App() {
   const [posts, setPosts] = useState([])
@@ -12,9 +13,12 @@ function App() {
       <Header />
       <div className={ style.wrapper }>
         <Sidebar />
-        {
-          posts.map(() => <Post />)
-        }
+        <>
+          <CommentForm />
+          {
+            posts.map(() => <Post />)
+          }
+        </>
       </div>
     </div>
   )
