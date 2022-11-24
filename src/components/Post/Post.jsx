@@ -9,7 +9,7 @@ export function Post() {
           <img src="" alt="" />
           <div className={ style.authorInfo}>
             <strong></strong>
-            <span></span>
+            <span>a</span>
           </div>
         </div>
 

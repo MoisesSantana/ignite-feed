@@ -8,3 +8,18 @@
   gap: 2rem;
   align-items: flex-start;
 }
+
+.wrapper h2 {
+  display: flex;
+  margin-top: 2.5rem;
+  align-items: center;
+  justify-content: space-around;
+  line-height: 1.6;
+  color: var(--gray-400);
+  font-size: 0.875rem;
+  width: 100%;
+}
+
+.wrapper h2 hr {
+  width: 40%;
+}

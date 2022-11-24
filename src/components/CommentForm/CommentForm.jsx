@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import style from './CommentForm.module.css'
 
-export function CommentForm({ post }) {
+export function CommentForm({ post, submitForm }) {
   const [commentField, setCommentField] = useState();
 
   return (
     <form
+      onSubmit={ (e) => submitForm(e, commentField) }
       className={
         !!post ? style.commentFormInPost : style.commentFormInHome
       }
