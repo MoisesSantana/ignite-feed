@@ -10,7 +10,7 @@ function App() {
 
   const submitForm = (e, commentField) => {
     e.preventDefault()
-    setPosts((prevState) => [...prevState, commentField])
+    setPosts((prevState) => [...prevState, { commentField, date: new Date().toLocaleString() }])
   }
 
   return (
@@ -24,7 +24,12 @@ function App() {
           />
           <h2><hr />Feed<hr /></h2>
           {
-            posts.map(() => <Post />)
+            posts.map((postInfo) => (
+              <Post
+                postInfo={ postInfo }
+                key={ `${postInfo.commentField}-${postInfo.date}` } 
+              />
+            ))
           }
         </div>
       </div>
