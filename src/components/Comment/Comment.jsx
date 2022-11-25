@@ -13,13 +13,12 @@ export function Comment({ commentInfo }) {
             <div className={ style.authorAndTime }>
               <strong>Moisés Santana</strong>
               <time dateTime={ commentInfo.date }>
-                Publicado em<br />
                 { commentInfo.date }
               </time>
             </div>
 
             <button title="Deletar comentário">
-              <Trash size={ 20 } />
+              <Trash size={ 24 } />
             </button>
           </header>
           <p>{ commentInfo.message }</p>
@@ -27,7 +26,8 @@ export function Comment({ commentInfo }) {
         <footer>
           <button onClick={ () => setLikes((prevState) => prevState + 1)}>
             <ThumbsUp />
-            {`Aplaudir - ${likes}`}
+            Aplaudir
+            <span>{likes}</span>
           </button>
         </footer>        
       </div>
