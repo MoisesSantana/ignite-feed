@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { CommentForm } from '../CommentForm/CommentForm'
 import { Comment } from '../Comment/Comment'
 import style from './Post.module.css'
+import { Avatar } from '../Avatar/Avatar'
 
 export function Post({ postInfo }) {
   const [commentList, setCommentList] = useState([])
@@ -16,7 +17,10 @@ export function Post({ postInfo }) {
     <article className={ style.post }>
       <header>
         <div className={ style.author }>
-          <img src="https://github.com/moisessantana.png" />
+          <Avatar
+            user
+            src="https://github.com/moisessantana.png"
+          />
           <div className={ style.authorInfo}>
             <strong>Moisés Santana</strong>
             <span>Instrutor Front End</span>
@@ -36,7 +40,7 @@ export function Post({ postInfo }) {
       <div className={ style.commentList }>
         {
           commentList.map((commentInfo) => (
-            <Comment commentInfo={ commentInfo } />
+            <Comment commentInfo={ commentInfo } key={ `${postInfo.message}-${postInfo.date}` } />
           ))
         }
       </div>
