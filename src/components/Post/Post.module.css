@@ -72,3 +72,7 @@
   font-size: 0.875rem;
   color: var(--gray-400);
 }
+
+.commentList {
+  margin-top: 2rem;
+}
