@@ -23,3 +23,13 @@
 .wrapper h2 hr {
   width: 40%;
 }
+
+@media (max-width: 768px) {
+  html {
+    font-size: 87.5%;
+  }
+
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
+}
