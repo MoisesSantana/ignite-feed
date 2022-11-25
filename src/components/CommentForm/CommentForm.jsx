@@ -6,7 +6,10 @@ export function CommentForm({ post, submitForm }) {
 
   return (
     <form
-      onSubmit={ (e) => submitForm(e, commentField) }
+      onSubmit={ (e) => {
+        submitForm(e, commentField)
+        setCommentField('')
+       }}
       className={
         !!post ? style.commentFormInPost : style.commentFormInHome
       }

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Avatar } from '../Avatar/Avatar'
 import style from './Comment.module.css'
 
-export function Comment({ commentInfo }) {
+export function Comment({ commentInfo, removeComment }) {
   const [likes, setLikes] = useState(0)
   return (
     <div className={ style.comment }>
@@ -20,7 +20,10 @@ export function Comment({ commentInfo }) {
               </time>
             </div>
 
-            <button title="Deletar comentário">
+            <button
+              title="Deletar comentário"
+              onClick={ () => removeComment(commentInfo) }
+            >
               <Trash size={ 24 } />
             </button>
           </header>

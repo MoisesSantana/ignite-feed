@@ -12,7 +12,14 @@ export function Post({ postInfo }) {
     setCommentList((prevState) => [...prevState, { message, date: new Date().toLocaleString() }])
   }
 
-  console.log(commentList)
+  const removeComment = (commentInfo) => {
+    const filteredComments = commentList.filter((comment) => (
+      comment.message !== commentInfo.message || comment.date !== commentInfo.date
+    ))
+
+    setCommentList(filteredComments)
+  }
+
   return (
     <article className={ style.post }>
       <header>
@@ -40,7 +47,11 @@ export function Post({ postInfo }) {
       <div className={ style.commentList }>
         {
           commentList.map((commentInfo) => (
-            <Comment commentInfo={ commentInfo } key={ `${postInfo.message}-${postInfo.date}` } />
+            <Comment
+              commentInfo={ commentInfo }
+              key={ `${commentInfo.message}-${commentInfo.date}` }
+              removeComment={ removeComment }
+            />
           ))
         }
       </div>
