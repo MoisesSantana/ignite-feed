@@ -1,11 +1,24 @@
 import { useState } from 'react'
+import { format, formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 import { CommentForm } from '../CommentForm/CommentForm'
 import { Comment } from '../Comment/Comment'
-import style from './Post.module.css'
 import { Avatar } from '../Avatar/Avatar'
+import style from './Post.module.css'
 
 export function Post({ postInfo }) {
   const [commentList, setCommentList] = useState([])
+
+  const publishedDateFormatted = format(
+    postInfo.date,
+    "d 'de' LLLL 'às' HH:mm'h'",
+    { locale: ptBR }
+  );
+
+  const publishedDateRelativeToNow = formatDistanceToNow(
+    postInfo.date,
+    { locale: ptBR, addSuffix: true }
+  )
 
   const submitForm = (e, message) => {
     e.preventDefault()
@@ -34,9 +47,8 @@ export function Post({ postInfo }) {
           </div>
         </div>
 
-        <time dateTime={ postInfo.date }>
-          Publicado em<br />
-          { postInfo.date }
+        <time title={ publishedDateFormatted } dateTime={ postInfo.date.toLocaleString() }>
+          { publishedDateRelativeToNow }
         </time>
       </header>
 

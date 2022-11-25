@@ -10,7 +10,7 @@ function App() {
 
   const submitForm = (e, commentField) => {
     e.preventDefault()
-    setPosts((prevState) => [...prevState, { commentField, date: new Date().toLocaleString() }])
+    setPosts((prevState) => [...prevState, { commentField, date: new Date() }])
   }
 
   return (
