@@ -8,8 +8,7 @@ import { CommentForm } from './components/CommentForm/CommentForm'
 function App() {
   const [posts, setPosts] = useState([])
 
-  const submitForm = (e, commentField) => {
-    e.preventDefault()
+  const submitForm = (commentField) => {
     setPosts((prevState) => [...prevState, { commentField, date: new Date() }])
   }
 

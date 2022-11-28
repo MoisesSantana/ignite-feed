@@ -57,3 +57,10 @@
 .commentFormInHome button:hover, .commentFormInPost button:hover {
   background-color: var(--green-300);
 }
+
+.commentFormInHome button:disabled, .commentFormInPost button:disabled {
+  background-color: var(--gray-600);
+  color: var(--gray-400);
+  text-shadow: 0 0 3px var(--gray-300);
+  cursor: not-allowed;
+}

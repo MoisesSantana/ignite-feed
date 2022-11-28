@@ -1,15 +1,23 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import style from './CommentForm.module.css'
 
 export function CommentForm({ post, submitForm }) {
-  const [commentField, setCommentField] = useState();
+  const [commentField, setCommentField] = useState('');
+  const [isDisable, setIsDisable] = useState(true)
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    submitForm(commentField)
+    setCommentField('')
+  }
+
+  useEffect(() => {
+    setIsDisable(commentField.length === 0)
+  }, [commentField])
 
   return (
     <form
-      onSubmit={ (e) => {
-        submitForm(e, commentField)
-        setCommentField('')
-       }}
+      onSubmit={ (e) => handleSubmit(e) }
       className={
         !!post ? style.commentFormInPost : style.commentFormInHome
       }
@@ -23,7 +31,10 @@ export function CommentForm({ post, submitForm }) {
         placeholder={ !!post ? 'Deixe seu comentário' : 'Faça seu post'}
       />
       <footer>
-        <button type="submit">
+        <button
+          type="submit"
+          disabled={ isDisable }
+        >
           Publicar
         </button>
       </footer>
