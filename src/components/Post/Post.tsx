@@ -6,8 +6,20 @@ import { Comment } from '../Comment/Comment'
 import { Avatar } from '../Avatar/Avatar'
 import style from './Post.module.css'
 
-export function Post({ postInfo }) {
-  const [commentList, setCommentList] = useState([])
+interface IPostProps {
+  postInfo: {
+    date: Date,
+    commentField: string,
+  }
+}
+
+interface ICommentInfo {
+  message: string,
+  date: string
+}
+
+export function Post({ postInfo }: IPostProps) {
+  const [commentList, setCommentList] = useState([] as ICommentInfo[])
 
   const publishedDateFormatted = format(
     postInfo.date,
@@ -20,13 +32,12 @@ export function Post({ postInfo }) {
     { locale: ptBR, addSuffix: true }
   )
 
-  const submitForm = (e, message) => {
-    e.preventDefault()
+  const submitForm = (message: string) => {
     setCommentList((prevState) => [...prevState, { message, date: new Date().toLocaleString() }])
   }
 
-  const removeComment = (commentInfo) => {
-    const filteredComments = commentList.filter((comment) => (
+  const removeComment = (commentInfo: ICommentInfo) => {
+    const filteredComments = commentList.filter((comment: ICommentInfo) => (
       comment.message !== commentInfo.message || comment.date !== commentInfo.date
     ))
 
@@ -58,7 +69,7 @@ export function Post({ postInfo }) {
       <CommentForm post submitForm={ submitForm } />
       <div className={ style.commentList }>
         {
-          commentList.map((commentInfo) => (
+          commentList.map((commentInfo: ICommentInfo) => (
             <Comment
               commentInfo={ commentInfo }
               key={ `${commentInfo.message}-${commentInfo.date}` }

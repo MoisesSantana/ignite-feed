@@ -5,10 +5,15 @@ import { Sidebar } from './components/Sidebar/Sidebar'
 import { Post } from './components/Post/Post'
 import { CommentForm } from './components/CommentForm/CommentForm'
 
-function App() {
-  const [posts, setPosts] = useState([])
+interface IPostContent {
+  commentField: string,
+  date: Date,
+}
 
-  const submitForm = (commentField) => {
+function App() {
+  const [posts, setPosts] = useState([] as IPostContent[])
+
+  const submitForm = (commentField: string) => {
     setPosts((prevState) => [...prevState, { commentField, date: new Date() }])
   }
 

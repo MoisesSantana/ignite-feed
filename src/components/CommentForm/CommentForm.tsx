@@ -1,11 +1,16 @@
-import { useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import style from './CommentForm.module.css'
 
-export function CommentForm({ post, submitForm }) {
+interface ICommentFormProps {
+  post?: boolean,
+  submitForm: (commentField: string) => void
+}
+
+export function CommentForm({ post, submitForm }: ICommentFormProps) {
   const [commentField, setCommentField] = useState('');
   const [isDisable, setIsDisable] = useState(true)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     submitForm(commentField)
     setCommentField('')

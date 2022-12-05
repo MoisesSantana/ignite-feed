@@ -3,7 +3,17 @@ import { useState } from 'react'
 import { Avatar } from '../Avatar/Avatar'
 import style from './Comment.module.css'
 
-export function Comment({ commentInfo, removeComment }) {
+interface ICommentInfo {
+  date: string,
+  message: string
+}
+
+interface ICommentProps {
+  commentInfo: ICommentInfo
+  removeComment: (commentInfo: ICommentInfo) => void
+}
+
+export function Comment({ commentInfo, removeComment }: ICommentProps) {
   const [likes, setLikes] = useState(0)
   return (
     <div className={ style.comment }>
